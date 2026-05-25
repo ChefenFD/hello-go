@@ -11,13 +11,14 @@ jobs:
     name: Test og lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5 # ← v5 (Node.js 24)
 
       - name: Sæt Go op
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@v6 # ← v6 (Node.js 24)
         with:
           go-version: "1.26"
           cache: true
+          cache-dependency-path: go.sum # ← fix til "go.sum not found"
 
       - name: Download afhængigheder
         run: go mod download
@@ -43,12 +44,14 @@ jobs:
     name: Sikkerhedsscanning
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5 # ← v5 (Node.js 24)
 
       - name: Sæt Go op
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@v6 # ← v6 (Node.js 24)
         with:
           go-version: "1.26"
+          cache: true
+          cache-dependency-path: go.sum # ← fix til "go.sum not found"
 
       - name: Govulncheck
         run: |
