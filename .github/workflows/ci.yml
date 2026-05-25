@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [main, develop]
+    branches: [main]
   pull_request:
     branches: [main]
 
@@ -35,10 +35,9 @@ jobs:
         continue-on-error: true
 
       - name: Lint
-        uses: golangci/golangci-lint-action@v6
+        uses: golangci/golangci-lint-action@v9
         with:
-          version: latest
-          go-version: "1.26"
+          version: v2.12
 
   security:
     name: Sikkerhedsscanning
